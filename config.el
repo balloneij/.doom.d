@@ -239,3 +239,16 @@
   ;; if opened with split windows. Preventing it from shrinking stops
   ;; it from shifting and being distracting
   (display-line-numbers-grow-only t))
+
+(use-package! hl-todo
+  :custom
+  (hl-todo-keyword-faces
+   `(("TODO" warning bold)
+     ("FIXME" error bold)
+     ("DEBT" error bold)
+     ("HACK" font-lock-constant-face bold)
+     ("REVIEW" font-lock-keyword-face bold)
+     ("NOTE" success bold)
+     ("DEPRECATED" font-lock-doc-face bold)
+     ("BUG" error bold)
+     ("XXX" font-lock-constant-face bold))))
