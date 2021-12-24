@@ -1,0 +1,33 @@
+#+TITLE: Todo
+
+* DONE Why can't I add .doom.d to a project
+Vertico is buggy as of <2021-12-17 Fri>
+* DONE Remove old projects in =SPC p p=
+* DONE Remove new headings in file search buffers
+Reverted back to Ivy which does not add headings to search buffers
+* TODO Get dap-cpptools and try debugging rust
+* TODO Allow C-u, C-d, C-f, C-b in swiper
+Mimic vim behavior
+* TODO In normal mode, map backspace to the previous buffer
+If the last buffer was in the same window, use =previous-buffer=, if
+the last buffer was in a different window, switch to that frame, if
+it was in a different frame, switch to that frame+window
+**
+* TODO In normal mode, when using left or right arrow, navigate last ivy session
+Shortcut to =ivy-resume=. It should probably display a message
+when there's no results besides the one, and it shouldn't wrap around
+** TODO Pressing =<-= is equivalanet to =SPC '=, =C-k=, =ENTER=
+** TODO Pressing =->= is equivalanet to =SPC '=, =C-j=, =ENTER=
+** TODO At the top of an Ivy session, =<-= displays a message "No prior results"
+** TODO At the bottom of an Ivy session, =->= displays a message "No more results"
+** TODO If the list count is 1, it should be the equivalent of =SPC '=, =ENTER=
+** TODO If the list count is 1, it should also display "Only one result"
+** TODO If the list count is 0, it should display "No results"
+** TODO If there is no Ivy session, it should display "No session results"
+* TODO In Rust, define a hot key that jumps to the nearest mod file
+* TODO In Rust, define a delete inner |
+[[file:config.el::;; TODO Evil inner pipe binding][In progress]]. Stumped :/
+* DONE Switch =SPC-;= and =SPC-:=
+* DONE Disable super save
+* DONE On build, save all modified project files
+Customized specifically for Rustic =(buffer-save-without-query t)=
