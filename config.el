@@ -168,10 +168,6 @@
   (define-key company-active-map (kbd "C-n") 'evil-complete-next)
   (define-key company-active-map (kbd "C-p") 'evil-complete-previous))
 
-(use-package! super-save
-  :config (super-save-mode +1)
-  :custom (super-save-auto-save-save-when-idle t))
-
 (use-package! evil-snipe
   :custom (evil-snipe-spillover-scope 'whole-visible))
 
@@ -240,8 +236,10 @@
   ;; it from shifting and being distracting
   (display-line-numbers-grow-only t))
 
+
 (use-package! hl-todo
   :custom
+  ;; Override keyword faces in order to add DEBT
   (hl-todo-keyword-faces
    `(("TODO" warning bold)
      ("FIXME" error bold)
@@ -252,3 +250,22 @@
      ("DEPRECATED" font-lock-doc-face bold)
      ("BUG" error bold)
      ("XXX" font-lock-constant-face bold))))
+
+(map! :leader
+      ;; Swap the default keybindings
+      :desc "Eval expression" ":" #'pp-eval-expression
+      :desc "M-x"             ";" #'execute-extended-command)
+
+(use-package! rustic
+  :custom (buffer-save-without-query t))
+
+;; TODO Evil inner pipe binding
+;; It's defined how all other evil-inner-.* are defined, but it doesn't work
+(evil-define-text-object evil-inner-pipe (count &optional beg end type)
+  "Select inner pipes."
+  :extend-selection nil
+  (evil-select-paren ?\| ?\| beg end type count))
+
+(define-key! evil-inner-text-objects-map "|" 'evil-inner-pipe)
+
+
