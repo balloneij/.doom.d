@@ -239,3 +239,12 @@
   ;; if opened with split windows. Preventing it from shrinking stops
   ;; it from shifting and being distracting
   (display-line-numbers-grow-only t))
+
+(use-package! which-key
+  ;; When the which-key minibuffer opens, it centers the buffer around the cursor
+  ;; if the pop up would block where the current cursor is. For instance,
+  ;; when the cursor is at the bottom of the visible buffer and you press C-c. This
+  ;; could be convenient except for when you cancel ESC or C-g and now the buffer
+  ;; layout is shifted. Preserving the window configuration will replace it to
+  ;; the state before using which-key.
+  :custom (which-key-preserve-window-configuration t))
