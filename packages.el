@@ -52,5 +52,4 @@
 ;; (package! key-chord)
 (package! prettier)
 (package! flycheck-clj-kondo)
-(package! super-save)
 (package! almost-mono-themes)

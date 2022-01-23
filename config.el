@@ -73,6 +73,14 @@
 
 ;;; Evil
 
+(after! evil
+  (define-key evil-normal-state-map (kbd "<left>") 'evil-window-left)
+  (define-key evil-normal-state-map (kbd "<right>") 'evil-window-right)
+  (define-key evil-normal-state-map (kbd "<up>") 'evil-window-up)
+  (define-key evil-normal-state-map (kbd "<down>") 'evil-window-down)
+  (define-key evil-normal-state-map (kbd "<backspace>") 'evil-window-prev)
+  (define-key evil-normal-state-map (kbd "S-<backspace>") 'evil-window-next))
+
 ;; Move to new window after splitting
 ;; (setq evil-split-window-below t
 ;;       evil-vsplit-window-right t)
@@ -168,10 +176,6 @@
   (define-key company-active-map (kbd "C-n") 'evil-complete-next)
   (define-key company-active-map (kbd "C-p") 'evil-complete-previous))
 
-(use-package! super-save
-  :config (super-save-mode +1)
-  :custom (super-save-auto-save-save-when-idle t))
-
 (use-package! evil-snipe
   :custom (evil-snipe-spillover-scope 'whole-visible))
 
@@ -248,3 +252,35 @@
   ;; layout is shifted. Preserving the window configuration will replace it to
   ;; the state before using which-key.
   :custom (which-key-preserve-window-configuration t))
+
+(use-package! hl-todo
+  :custom
+  ;; Override keyword faces in order to add DEBT
+  (hl-todo-keyword-faces
+   `(("TODO" warning bold)
+     ("FIXME" error bold)
+     ("DEBT" error bold)
+     ("HACK" font-lock-constant-face bold)
+     ("REVIEW" font-lock-keyword-face bold)
+     ("NOTE" success bold)
+     ("DEPRECATED" font-lock-doc-face bold)
+     ("BUG" error bold)
+     ("XXX" font-lock-constant-face bold))))
+
+(map! :leader
+      ;; Swap the default keybindings
+      :desc "Eval expression" ":" #'pp-eval-expression
+      :desc "M-x"             ";" #'execute-extended-command)
+
+(use-package! rustic
+  :custom (buffer-save-without-query t))
+
+;; TODO Evil inner pipe binding
+;; It's defined how all other evil-inner-.* are defined, but it doesn't work
+(evil-define-text-object evil-inner-pipe (count &optional beg end type)
+  "Select inner pipes."
+  :extend-selection nil
+  (evil-select-paren ?\| ?\| beg end type count))
+
+(define-key! evil-inner-text-objects-map "|" 'evil-inner-pipe)
+
