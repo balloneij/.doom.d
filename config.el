@@ -73,6 +73,14 @@
 
 ;;; Evil
 
+(after! evil
+  (define-key evil-normal-state-map (kbd "<left>") 'evil-window-left)
+  (define-key evil-normal-state-map (kbd "<right>") 'evil-window-right)
+  (define-key evil-normal-state-map (kbd "<up>") 'evil-window-up)
+  (define-key evil-normal-state-map (kbd "<down>") 'evil-window-down)
+  (define-key evil-normal-state-map (kbd "<backspace>") 'evil-window-prev)
+  (define-key evil-normal-state-map (kbd "S-<backspace>") 'evil-window-next))
+
 ;; Move to new window after splitting
 ;; (setq evil-split-window-below t
 ;;       evil-vsplit-window-right t)
