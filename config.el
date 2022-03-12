@@ -37,6 +37,10 @@
 
 (setq doom-font (font-spec :family "Source Code Pro" :size 10))
 
+;; Hide the small circle that indicates which Vi mode we are in. It's not
+;; entirely necessary because the cursor shape tells us.
+;; (advice-add #'doom-modeline-segment--modals :override #'ignore)
+
 ;; Here are some additional functions/macros that could help you configure Doom:
 ;;
 ;; - `load!' for loading external *.el files relative to this one
@@ -272,8 +276,8 @@
       :desc "Eval expression" ":" #'pp-eval-expression
       :desc "M-x"             ";" #'execute-extended-command)
 
-(use-package! rustic
-  :custom (buffer-save-without-query t))
+;; (use-package! rustic
+;;   :custom (buffer-save-without-query t))
 
 ;; TODO Evil inner pipe binding
 ;; It's defined how all other evil-inner-.* are defined, but it doesn't work
@@ -284,3 +288,5 @@
 
 (define-key! evil-inner-text-objects-map "|" 'evil-inner-pipe)
 
+
+(setq scroll-compilation-output t)
